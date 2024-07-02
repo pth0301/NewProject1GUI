@@ -17,7 +17,7 @@ import feature.CSVtoJSONConvertor;
 import request.GraphAPIRequest;
 
 public class AddNewMembersToTeamFromCSV {
-	public AddNewMembersToTeamFromCSV(String teamId, File filePath, Owner owner) {
+	public AddNewMembersToTeamFromCSV(String teamId, String filePath, Owner owner) {
 		GraphAPIRequest gReq = new GraphAPIRequest();
 		gReq.setTeamId(teamId);
 		gReq.setACCESS_TOKEN(owner.getAccessToken());

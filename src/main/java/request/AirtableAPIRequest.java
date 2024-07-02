@@ -52,6 +52,7 @@ public class AirtableAPIRequest extends Request{
 		} else {
 			throw new IllegalArgumentException("Error");
 		}
+		this.BASE_ID = BASE_ID;
 		
 	}
 

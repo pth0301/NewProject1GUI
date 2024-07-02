@@ -25,7 +25,6 @@ import entity.Member;
 
 public class ToTeamFromCSVController implements Initializable {
 
-
     @FXML
     private Button ChoosefilesButton;
 
@@ -46,32 +45,41 @@ public class ToTeamFromCSVController implements Initializable {
 
     @FXML
     private TableColumn<Member, String> userId;
+
     @FXML
     private TextField TeamIDField;
 
-
     @FXML
     private Button addButton;
+    @FXML
+    private Button BackButton;
 
     private ObservableList<Member> list = FXCollections.observableArrayList();
 
+    private File selectedFile;
 
     @FXML
     void ChoosefilesButtonClicked(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser(); // Call FileChooser class to navigate the file system
+        FileChooser fileChooser = new FileChooser();
 
-        Stage stage = (Stage) ChoosefilesButton.getScene().getWindow(); // button to open systems
-        File selectedFile = fileChooser.showOpenDialog(stage);
+        Stage stage = (Stage) ChoosefilesButton.getScene().getWindow();
+        selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
-            TextArea.setText(selectedFile.getAbsolutePath()); // display filepath in TextArea
-            initList(selectedFile); // display the file csv in tableview
+            TextArea.setText(selectedFile.getAbsolutePath());
+            initList(selectedFile);
         }
     }
+
     @FXML
     void addButtonClicked(ActionEvent event) {
         String TeamID = TeamIDField.getText();
-        //new AddNewMembersToTeamFromCSV(TeamID, selectedFile.getAbsolutePath(),Verify.owner);
-        System.out.println("Add successfully!");
+        String filePath = TextArea.getText();
+        if (filePath != null && !filePath.isEmpty()) {
+            new AddNewMembersToTeamFromCSV(TeamID, filePath, Verify.owner);
+            System.out.println("Add successfully!");
+        } else {
+            System.out.println("No file selected.");
+        }
     }
 
     @Override
@@ -93,11 +101,28 @@ public class ToTeamFromCSVController implements Initializable {
             while (inputStream.hasNext()) {
                 String data = inputStream.nextLine();
                 String[] valuesLine = data.split(",");
-//                list.add(new Member(valuesLine[0], valuesLine[1], valuesLine[2], valuesLine[3]));
+                list.add(new Member(valuesLine[0], valuesLine[1], valuesLine[2], valuesLine[3]));
             }
             inputStream.close();
-            TableView.setItems(list); // Update the TableView with new data
+            TableView.setItems(list);
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void BackButtonClicked(ActionEvent event) {
+        try{
+            // Load the To Channel scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Team.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) BackButton.getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -31,6 +31,10 @@ public class CreateChannelsController {
     private Button backButton;
 
     @FXML
+    private TextField TeamIDField;
+
+
+    @FXML
     void backButtonClicked(ActionEvent event) {
         try {
             // Load the To Channel scene
@@ -53,8 +57,11 @@ public class CreateChannelsController {
         String displayName = displayNameField.getText();
         String description = descriptionField.getText();
         String membershipType = membershipTypeField.getText();
+        String teamID = TeamIDField.getText();
 
-        new CreateNewChannels("", displayName, description, membershipType, Verify.owner);
+        //new CreateNewChannels(teamID, displayName, description, membershipType, Verify.owner);
+        //new CreateNewPrivateChannels(teamID, displayName, description, membershipType, Verify.owner);
+        new CreateNewSharedChannels(teamID, displayName, description, membershipType, Verify.owner);
         System.out.println("finish!");
 
 

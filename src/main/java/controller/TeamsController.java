@@ -29,15 +29,9 @@ public class TeamsController {
     @FXML
     private MenuItem ToTeamFromCSVButton;
 
-
     @FXML
-    private MenuItem MembersButton;
+    private MenuItem SyncWithAirtableButton;
 
-    @FXML
-    private MenuItem TeamsButton;
-
-    @FXML
-    private MenuItem ToChannelButton;
 
     @FXML
     private Label lbl;
@@ -87,23 +81,17 @@ public class TeamsController {
             e.printStackTrace();
         }
         this.owner.setAccessToken(accessToken);
-        //System.out.println("Access_token: " + this.owner.getAccessToken());
-    }
-    @FXML
-    void ChannelsButtonClicked(ActionEvent event) {
-        // Add functionality for ChannelsButton here
+
     }
 
     @FXML
     void CreateChannelClicked(ActionEvent event) {
+        Stage currentStage = (Stage) lbl.getScene().getWindow();
         try {
-            // Load the To Channel scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateChannels.fxml"));
-            Parent root = loader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/CreateChannels.fxml"));
+            Parent root = fxmlLoader.load();
 
-            Stage stage = (Stage) ChannelsButton.getParentPopup().getOwnerWindow();
-
-            // Set the new scene
+            Stage stage = currentStage;
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -111,7 +99,6 @@ public class TeamsController {
             e.printStackTrace();
         }
 
-        //System.out.println("token channels: " + owner.getAccessToken());
 
     }
 
@@ -132,17 +119,6 @@ public class TeamsController {
         }
     }
 
-
-    @FXML
-    void MembersButtonClicked(ActionEvent event) {
-        // Add functionality for MembersButton here
-    }
-
-    @FXML
-    void TeamsButtonClicked(ActionEvent event) {
-        // Add functionality for TeamsButton here
-    }
-
     @FXML
     void ToChannelButtonClicked(ActionEvent event) {
         Stage currentStage = (Stage) lbl.getScene().getWindow();
@@ -160,6 +136,24 @@ public class TeamsController {
         }
 
     }
+    @FXML
+    void SyncWithAirtableButtonClicked(ActionEvent event) {
+        Stage currentStage = (Stage) lbl.getScene().getWindow();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Sync.fxml"));
+            fxmlLoader.setController(new SyncController());
+            Parent root = fxmlLoader.load();
+
+            Stage stage = currentStage;
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 
 

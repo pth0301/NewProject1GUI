@@ -16,18 +16,12 @@
                     <menus>
                         <Menu fx:id="FileButton" mnemonicParsing="false" text="Option">
                             <items>
+                        <MenuItem fx:id="SyncWithAirtableButton" mnemonicParsing="false" onAction="#SyncWithAirtableButtonClicked" text="SyncWithAirtable" />
                                 <MenuItem fx:id="CreateChannelButton" mnemonicParsing="false" onAction="#CreateChannelClicked" text="CreateChannel" />
                                 <Menu mnemonicParsing="false" text="AddMembers">
                                     <items>
                                         <MenuItem fx:id="ToChannelButton" mnemonicParsing="false" onAction="#ToChannelButtonClicked" text="ToChannel" />
                               <MenuItem fx:id="ToTeamFromCSVButton" mnemonicParsing="false" onAction="#ToTeamFromCSVButtonClicked" text="ToTeamFromCSV" />
-                                    </items>
-                                </Menu>
-                                <Menu mnemonicParsing="false" text="SyncToAirtable">
-                                    <items>
-                                        <MenuItem fx:id="MembersButton" mnemonicParsing="false" onAction="#MembersButtonClicked" text="Members" />
-                                        <MenuItem fx:id="ChannelsButton" mnemonicParsing="false" onAction="#ChannelsButtonClicked" text="Channels" />
-                                        <MenuItem fx:id="TeamsButton" mnemonicParsing="false" onAction="#TeamsButtonClicked" text="Teams" />
                                     </items>
                                 </Menu>
                             </items>

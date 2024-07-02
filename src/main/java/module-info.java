@@ -8,9 +8,12 @@ module MicrosoftTeamManagementApp {
     requires java.net.http;
     requires jakarta.json;
     requires jdk.httpserver;
+    requires java.desktop;
 
     opens controller to javafx.fxml;
+    opens entity to javafx.base;
     exports controller;
     exports feature;
     opens feature to javafx.fxml;
+    exports entity;
 }
