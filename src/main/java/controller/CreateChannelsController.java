@@ -59,8 +59,14 @@ public class CreateChannelsController {
         String membershipType = membershipTypeField.getText();
         String teamID = TeamIDField.getText();
 
-        //new CreateNewChannels(teamID, displayName, description, membershipType, Verify.owner);
-        new CreateNewPrivateChannels(teamID, displayName, description, membershipType, Verify.owner);
+        if (membershipType.equals("private")){
+            new CreateNewPrivateChannels(teamID, displayName, description, membershipType, Verify.owner);
+        }
+        else if (membershipType.equals("shared")){
+            new CreateNewSharedChannels(teamID, displayName, description, membershipType, Verify.owner);
+        }
+        new CreateNewChannels(teamID, displayName, description, membershipType, Verify.owner);
+        //new CreateNewPrivateChannels(teamID, displayName, description, membershipType, Verify.owner);
         //new CreateNewSharedChannels(teamID, displayName, description, membershipType, Verify.owner);
         try {
             // Load the SyncDialog.fxml
